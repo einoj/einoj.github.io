@@ -36,11 +36,11 @@ const char* f (int a)
 The reason for removing conditional jumps is because they are a form of branching. Modern CPUs attempts to guess the outcome of conditional operations by a technique called branch prediction. If the prediction is wrong the prediction CPU cycles are wasted, therefore we want to avoid the conditional jumps.
 
 ARMs developer docs explains that CSEL has the following form\[0\]:
-```
+```asm
 CSEL       Xd, Xn, Xm, cond
 ```
 and function:
-```
+```python
 if cond then
 
   Xd = Xn
@@ -79,7 +79,7 @@ int main(void) {
 }
 ```
 It works!
-```shell
+```bash
 localhost:~# gcc -c ex1.18.6_main.c f.s && gcc ex1.18.6_main.o f.o -o ex1.18.6 && ./ex1.18.6
 it is ten
 it is not ten
