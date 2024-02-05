@@ -5,23 +5,26 @@
     </head>
     <body>
         <div class="background">
-        <div class="centered">
-        <input id="people" name="people" type="number" min="1" max="420" value="4" oninput="generate_taco()"/>
-        <table border="2">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Ingrediens</th>
-                    <th scope="col">Handleliste</th>
-                    <th scope="col">Behov</th>
-                    <th scope="col">Sulten<br>Turgjeng</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
+            <div class="centered">
+                <span>
+                    <input id="people" name="people" type="number" min="1" max="420" value="4" oninput="generate_taco()"/>
+                    <img src="img/tacolator.png" alt="taco calculator">
+                </span>
+                <table border="2">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Ingrediens</th>
+                            <th scope="col">Handleliste</th>
+                            <th scope="col">Behov</th>
+                            <th scope="col">Sulten<br>Turgjeng</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
 
-            <script src="tacolator.js"></script>
-            </tbody>
-        </table>
-        </div>
+                        <script src="tacolator.js"></script>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
