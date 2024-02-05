@@ -1,8 +1,8 @@
 input {
-    font-size: 3vw;
+    font-size: 2vw;
 }
 table {
-    font-size: 3vw;
+    font-size: 2vw;
     border-collapse: collapse;
     color: rgba(55,55,55,1.0)
 }
@@ -27,5 +27,6 @@ td {
 
 img {
     width: 10%;
+    height: auto;
     transform: translate(0%, 10%);
 }
