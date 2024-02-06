@@ -9,6 +9,7 @@ input {
 .centered {
     position: absolute;
     right: 1.0em;
+    left : 1.0em;
     overflow-y: auto;
     overflow-x: hidden;
 }
