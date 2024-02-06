@@ -2,7 +2,8 @@ body {
     font-family: 'Helvetica', 'Arial', sans-serif;
 }
 input {
-    font-size: 1.2em;
+    font-size: 4.3vw;
+    width: 50%;
 }
 
 .centered {
@@ -13,10 +14,9 @@ input {
 
 table {
     border-collapse: collapse;
-    font-size: 1.2em;
-    left: 10%;
-    width: 80%;
-    height: 80%;
+    font-size: 4.3vw;
+    width: 100%;
+    height: auto;
     color: rgba(55,55,55,1.0)
 }
 
@@ -27,7 +27,6 @@ th {
 
 td {
     text-align: right;
-    padding-left: 1em;
 }
 
 img {
