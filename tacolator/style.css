@@ -7,16 +7,17 @@ input {
 }
 
 .centered {
-    position: fixed;
+    position: absolute;
     left: 1.0em;
     right: 1.0em;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 table {
     border-collapse: collapse;
     font-size: 4.3vw;
     width: 100%;
-    height: auto;
     color: rgba(55,55,55,1.0)
 }
 
