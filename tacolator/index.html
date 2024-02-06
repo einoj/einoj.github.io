@@ -7,10 +7,13 @@
     </head>
     <body>
         <div class="centered">
-            <span>
-                <input id="people" name="people" type="number" min="1" max="420" value="4" oninput="generate_taco()"/>
-            </span>
+            <div class="inputform">
+            <form>
+                <input id="people_range" type="range" min="1" max="420" value="4"/>
+                <input id="people" type="number" min="1" max="420" value="4"/>
                 <img src="img/tacolator.gif" alt="taco calculator">
+            </form>
+            </div>
             <table border="2">
                 <thead class="thead-dark">
                     <tr>

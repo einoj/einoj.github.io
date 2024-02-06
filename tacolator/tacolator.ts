@@ -29,7 +29,13 @@ let ingridient_list = [
         new Ingridient("Rømme",	1/5)
 ];
 
-function generate_taco() {
+
+function generate_taco(e: Event) {
+    if ((e.target as HTMLElement).id === "people") {
+        (<HTMLInputElement>document.getElementById("people_range")).value = (e.target as HTMLInputElement).value;
+    } else if ((e.target as HTMLElement).id === "people_range") {
+        (<HTMLInputElement>document.getElementById("people")).value = (e.target as HTMLInputElement).value;
+    }
     const people = Number((<HTMLInputElement>document.getElementById("people")).value)
     const tableData = ingridient_list.map(ingridient => {
         return (
@@ -44,4 +50,11 @@ function generate_taco() {
     document.getElementById("tableBody").innerHTML = tableData;
 }
 
-generate_taco();
+var numpeople = document.getElementById("people");
+numpeople.addEventListener("input", generate_taco);
+document.getElementById("people_range").addEventListener("input", generate_taco);
+// create an initial event to populate the table
+var init_event = new Event("input", {
+    bubbles: true,
+});
+numpeople.dispatchEvent(init_event);

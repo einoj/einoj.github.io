@@ -8,10 +8,22 @@ input {
 
 .centered {
     position: absolute;
-    left: 1.0em;
     right: 1.0em;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+}
+
+input {
+    display: block;
+}
+
+input[type="range"] {
+  width: 100%;
 }
 
 table {

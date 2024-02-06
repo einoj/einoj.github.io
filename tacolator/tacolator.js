@@ -25,11 +25,24 @@ var ingridient_list = [
     new Ingridient("Agurk", 1 / 5),
     new Ingridient("Rømme", 1 / 5)
 ];
-function generate_taco() {
+function generate_taco(e) {
+    if (e.target.id === "people") {
+        document.getElementById("people_range").value = e.target.value;
+    }
+    else if (e.target.id === "people_range") {
+        document.getElementById("people").value = e.target.value;
+    }
     var people = Number(document.getElementById("people").value);
     var tableData = ingridient_list.map(function (ingridient) {
-        return ("<tr>\n           <td>" + ingridient.name + "</td>\n           <td>" + Math.ceil(people * ingridient.value) + " " + ingridient.unit + "</td>\n           <td>" + (people * ingridient.value).toFixed(2) + " " + ingridient.unit + "</td>\n           <td>" + ingridient.value + " " + ingridient.unit + "</td>\n        </tr>");
+        return ("<tr>\n           <td>".concat(ingridient.name, "</td>\n           <td>").concat(Math.ceil(people * ingridient.value), " ").concat(ingridient.unit, "</td>\n           <td>").concat((people * ingridient.value).toFixed(2), " ").concat(ingridient.unit, "</td>\n           <td>").concat(ingridient.value, " ").concat(ingridient.unit, "</td>\n        </tr>"));
     }).join('');
     document.getElementById("tableBody").innerHTML = tableData;
 }
-generate_taco();
+var numpeople = document.getElementById("people");
+numpeople.addEventListener("input", generate_taco);
+document.getElementById("people_range").addEventListener("input", generate_taco);
+// create an initial event to populate the table
+var init_event = new Event("input", {
+    bubbles: true
+});
+numpeople.dispatchEvent(init_event);
