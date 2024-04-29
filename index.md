@@ -5,6 +5,12 @@ title: Hello
 I am Eino, welcome to my website
 
 ___
+## 2024
+
+---
+
+- **Mon Apr 29**:
+[Maze generation in rust using raylib](ratsim/maze_binary_sidewinder.html)
 
 ## 2023
 
