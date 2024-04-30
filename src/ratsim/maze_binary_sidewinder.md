@@ -63,7 +63,8 @@ fn binary_tree() -> [[u8; maph]; mapl] {
 
 ```
 
-It produces an OK looking maze shown in Fig 1, but with the bias of a long corridor in the east and south ends.
+It produces an OK looking maze shown in Fig 1, but with the bias of a long corridor in the east and south ends:
+
 ![Fig. 1](img/binary_tree.png)
 
 # Sidewinder
@@ -125,5 +126,6 @@ fn sidewinder() -> [[u8; MAPH]; MAPL] {
     return map;
 }
 ```
-This produces a similar maze to the binary tree but without the long empty eastern column and with a bias towards longer horizontal paths. 
+This produces a similar maze to the binary tree but without the long empty eastern column and with a bias towards longer horizontal paths:
+
 ![Fig. 2](img/sidewinder.png)
