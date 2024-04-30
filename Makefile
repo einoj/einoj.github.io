@@ -20,8 +20,11 @@ $(index.html): $(index.md) $(top.css)
 $(builddir)/CNAME: $(srcdir)/CNAME
 	cp $(subst $(builddir),$(srcdir),$@)  $@
 
-$(html): $(sources)
-	pandoc $(subst html,md,$(subst $(builddir),$(srcdir),$@)) -f markdown -t html -s -o $@
+$(builddir)/top.css: $(srcdir)/top.css
+	cp $(subst $(builddir),$(srcdir),$@)  $@
+
+$(html): $(sources) $(builddir)/top.css
+	pandoc $(subst html,md,$(subst $(builddir),$(srcdir),$@)) -f markdown -t html -s -o $@ --css=../top.css
 
 $(imgobjs): $(imgdirs)
 	cp -r $(subst $(builddir),$(srcdir),$@) $@
