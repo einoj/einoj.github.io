@@ -66,14 +66,14 @@ function generate_pace(e: Event) {
         return (
         `<tr>
            <td>${race.name}</td>
-           <td>${finish_hours}:${leading_0_min}${finish_minutes}:${leading_0_sec}${finish_seconds}</td>
+           <td><div class="mono">${finish_hours}:${leading_0_min}${finish_minutes}:${leading_0_sec}${finish_seconds}</div></td>
         </tr>`
       );
     } else {
         return (
         `<tr>
            <td>${race.name}</td>
-           <td>${leading_0_min}${finish_minutes}:${leading_0_sec}${finish_seconds}</td>
+           <td><div class="mono">${leading_0_min}${finish_minutes}:${leading_0_sec}${finish_seconds}</div></td>
         </tr>`
       );
     }
