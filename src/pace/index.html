@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+
+        <title>Pace Calulator</title>
+    </head>
+    <body>
+        <div class="centered">
+            <div class="inputform">
+            <form>
+                <input id="time_range" type="range" min="0" max="720" step="1" value="4"/>
+                <input id="minutes" type="number" min="0" max="12" value="4"/>
+                <h1>:</h1>
+                <input id="seconds" type="number" min="0" max="60" value="10"/>
+            </form>
+            </div>
+            <table border="2">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Race</th>
+                        <th scope="col">Finish time</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <script src="pace.js"></script>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
