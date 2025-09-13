@@ -15,9 +15,9 @@ let race_list = [
         new Race("1200m", 1200),
         new Race("1600m", 1600),
         new Race("Mile", 1609.344),
-        new Race("5k", 5000),
-        new Race("10k", 10000),
-        new Race("Half-Mara",	21100)
+        new Race("5km", 5000),
+        new Race("10km", 10000),
+        new Race("Half-Marathon",	21100)
 ];
 
 function calculate_finish_time(minutes: number, seconds: number, len: number) {
