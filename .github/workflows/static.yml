@@ -35,7 +35,7 @@ jobs:
         with:
           lfs: 'true'
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get -y install pandoc
+        run: sudo apt-get update && sudo apt-get -y install pandoc node-typescript
       - name: Build webpage
         run: git lfs checkout && make
       - name: Setup Pages
