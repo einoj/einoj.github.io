@@ -12,9 +12,12 @@ let race_list = [
         new Race("200m", 200),
         new Race("400m", 400),
         new Race("800m", 800),
+        new Race("1000m", 1000),
         new Race("1200m", 1200),
         new Race("1600m", 1600),
         new Race("Mile", 1609.344),
+        new Race("2km", 2000),
+        new Race("3km", 3000),
         new Race("5km", 5000),
         new Race("10km", 10000),
         new Race("Half-Marathon",	21100)
