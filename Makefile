@@ -40,6 +40,7 @@ $(paceobjs): $(pacesrc)
 pace.js: $(paceobjs)
 	tsc $(builddir)/pace/pace.ts
 	rm $(builddir)/pace/pace.ts
+	ln -rs  $(builddir)/pace $(builddir)/tempo
 
 $(builddirs):
 	mkdir -p $@
