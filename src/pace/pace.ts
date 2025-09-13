@@ -28,6 +28,12 @@ function calculate_finish_time(minutes: number, seconds: number, len: number) {
     return len*seconds_per_m;
 }
 
+function add_leading_zero(time: number) {
+    if (time < 10) {
+        return "0";
+    }
+    return "";
+}
 
 function generate_pace(e: Event) {
     if ((e.target as HTMLElement).id === "minutes") {
@@ -48,23 +54,26 @@ function generate_pace(e: Event) {
     const seconds = Number((<HTMLInputElement>document.getElementById("seconds")).value)
     const tableData = race_list.map(race => {
     let finish_time = calculate_finish_time(minutes, seconds, race.length);
-    let finish_hours = Math.floor(finish_time/60/60);
+    const finish_hours = Math.floor(finish_time/60/60);
     finish_time = finish_time - finish_hours*60*60;
-    let finish_minutes = Math.floor(finish_time/60);
+    const finish_minutes = Math.floor(finish_time/60);
     finish_time = finish_time - finish_minutes*60;
-    let finish_seconds = Math.round(finish_time);
+    const finish_seconds = Math.round(finish_time);
+    const leading_0_sec = add_leading_zero(finish_seconds);
+    const leading_0_min= add_leading_zero(finish_minutes);
+
     if (finish_hours > 0) {
         return (
         `<tr>
            <td>${race.name}</td>
-           <td>${finish_hours}:${finish_minutes}:${finish_seconds}</td>
+           <td>${finish_hours}:${leading_0_min}${finish_minutes}:${leading_0_sec}${finish_seconds}</td>
         </tr>`
       );
     } else {
         return (
         `<tr>
            <td>${race.name}</td>
-           <td>${finish_minutes}:${finish_seconds}</td>
+           <td>${leading_0_min}${finish_minutes}:${leading_0_sec}${finish_seconds}</td>
         </tr>`
       );
     }
