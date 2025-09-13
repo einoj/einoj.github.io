@@ -10,9 +10,11 @@ imgdirs = $(wildcard $(srcdir)/*/img)
 imgobjs = $(patsubst $(srcdir)%,$(builddir)%,$(imgdirs))
 tacolatorsrc = $(filter-out %.md, $(wildcard $(srcdir)/tacolator/*.*))
 tacolatorobjs = $(patsubst $(srcdir)%,$(builddir)%,$(tacolatorsrc))
+pacesrc = $(filter-out %.md, $(wildcard $(srcdir)/pace/*.*))
+paceobjs = $(patsubst $(srcdir)%,$(builddir)%,$(pacesrc))
 index.html = $(patsubst $(srcdir)%.md,$(builddir)%.html,$(index.md))
 
-all: $(builddirs) $(index.html) $(subdirs) $(html) $(imgobjs) $(tacolatorobjs) $(builddir)/CNAME
+all: $(builddirs) $(index.html) $(subdirs) $(html) $(imgobjs) $(tacolatorobjs) pace.js $(builddir)/CNAME
 
 $(index.html): $(index.md) $(top.css)
 	pandoc  -f markdown -t html $< -o $@ --self-contained --css=$(top.css)
@@ -31,6 +33,13 @@ $(imgobjs): $(imgdirs)
 
 $(tacolatorobjs): $(tacolatorsrc)
 	cp $(subst $(builddir),$(srcdir),$@) $@
+
+$(paceobjs): $(pacesrc)
+	cp $(subst $(builddir),$(srcdir),$@) $@
+
+pace.js: $(paceobjs)
+	tsc $(builddir)/pace/pace.ts
+	rm $(builddir)/pace/pace.ts
 
 $(builddirs):
 	mkdir -p $@

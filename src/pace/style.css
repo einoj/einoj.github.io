@@ -1,0 +1,51 @@
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+input {
+    font-size: 4.3vw;
+    width: 50%;
+}
+
+.centered {
+    position: absolute;
+    right: 1.0em;
+    left : 1.0em;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+}
+
+input {
+    display: block;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    font-size: 4.3vw;
+    width: 100%;
+    color: rgba(55,55,55,1.0)
+}
+
+th {
+    text-align: left;
+    vertical-align: top;
+    width: 25%;
+}
+
+td {
+    text-align: right;
+}
+
+img {
+    width: 10%;
+    height: auto;
+    transform: translate(0%, 10%);
+}
