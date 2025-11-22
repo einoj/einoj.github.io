@@ -58,8 +58,8 @@ function generate_pace(e: Event) {
     finish_time = finish_time - finish_hours*60*60;
     const finish_minutes = Math.floor(finish_time/60);
     finish_time = finish_time - finish_minutes*60;
-    const finish_seconds = Math.round(finish_time);
-    const leading_0_sec = add_leading_zero(finish_seconds);
+    const finish_seconds = finish_time.toFixed(2);
+    const leading_0_sec = add_leading_zero(Math.round(finish_time));
     const leading_0_min= add_leading_zero(finish_minutes);
 
     if (finish_hours > 0) {
