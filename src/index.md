@@ -5,6 +5,16 @@ title: Hello
 I am Eino, welcome to my website
 
 ___
+## 2025
+
+---
+
+- **Sat Nov 22**:
+[Running pace calculator](pace/index.html).
+Unhappy with how clunky and slow other pace calculators online are I wrote my
+own in order to quickly figure out what pace I have to run to finish at a
+specific time. It can also be reached with the Norwegian link [oltedal.org/tempo](http://oltedal.org/tempo).
+
 ## 2024
 
 ---
