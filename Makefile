@@ -41,7 +41,7 @@ linux-by-hand:
 	cp src/linux-by-hand/index.html $(builddir)/linux-by-hand/
 
 pace.js: $(paceobjs)
-	tsc $(builddir)/pace/pace.ts
+	tsc --strictNullChecks false $(builddir)/pace/pace.ts
 	rm $(builddir)/pace/pace.ts
 	ln -rs  $(builddir)/pace $(builddir)/tempo
 
