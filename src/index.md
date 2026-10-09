@@ -5,6 +5,17 @@ title: Hello
 I am Eino, welcome to my website
 
 ___
+
+## 2026
+
+---
+
+- **Fri Oct 9**:
+[Linux built by hand speedrun](linux-by-hand/index.html).
+Buil and boot a linux+busybox operating system in less than 15 minutes The
+build was done in a podman container, and the OS was booted in qemu outside the
+container. Based on the guide by chrisdone
+
 ## 2025
 
 ---

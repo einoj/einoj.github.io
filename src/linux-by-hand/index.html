@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-10-09 Fri 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="eino" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge37667a">1. Linux Speedrun</a></li>
+<li><a href="#org59ba35c">2. Run Fedora and install dependencies</a></li>
+<li><a href="#org7dc7990">3. Download and build the kernel</a></li>
+<li><a href="#orgfc12e93">4. Build busybox core utils</a></li>
+<li><a href="#org6e18876">5. Create initial ramdisk root file system</a></li>
+<li><a href="#orgdf7d7d5">6. Copy files out of podman and run them in Qemu</a></li>
+<li><a href="#org648e9e8">7. Discussion</a></li>
+<li><a href="#org0c97e77">8. References</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge37667a" class="outline-2">
+<h2 id="orge37667a"><span class="section-number-2">1.</span> Linux Speedrun</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I was able to build and boot this linux+busybox operating system in
+less than 15 minutes during presentation at work.  The build was done
+in a podman container, and the kernel and rootfile system was booted
+in qemu outside the container.  Based on the guide by chrisdone[0].
+</p>
+</div>
+</div>
+<div id="outline-container-org59ba35c" class="outline-2">
+<h2 id="org59ba35c"><span class="section-number-2">2.</span> Run Fedora and install dependencies</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We are going to use:
+</p>
+<ul class="org-ul">
+<li>gcc — the compiler</li>
+<li>make — the kernel's build system</li>
+<li>bc — an arbitrary precision calculator language</li>
+<li>flex — lexical analyser generator</li>
+<li>bison — a parser generator</li>
+<li>cmp —  compare two files byte by byte</li>
+<li>ncurses-devel — for menuconfig</li>
+<li>cpio — for creating initramfs archive</li>
+<li>elfutils-devel — for gelf.h headers</li>
+<li>glibc-static — for building static busybox</li>
+<li>git — to fetch sources.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-nil">ejo@fedora ~/r/t/einix&gt; podman run -it fedora:latest /bin/bash
+[root@2d1eb21fc48e linux]# dnf install gcc make flex bison bc cmp ncurses-devel cpio elfutils-devel glibc-static git
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7dc7990" class="outline-2">
+<h2 id="org7dc7990"><span class="section-number-2">3.</span> Download and build the kernel</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Find the latest tag and shallow clone it. At the time of writing the
+latest release tag is v7.2
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">[root@2d1eb21fc48e /]# git ls-remote --tags https://github.com/torvalds/linux
+[root@2d1eb21fc48e /]# git clone --branch=v7.2 --depth=1 https://github.com/torvalds/linux
+</pre>
+</div>
+
+<p>
+Now configure the kernel by saying no to everything and build it using
+make, i use -j 14 because I have 14 CPU cores.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">[root@2d1eb21fc48e /]# make allnoconfig # This generates the kernel config in the .config file
+[root@2d1eb21fc48e /]# make -j14
+</pre>
+</div>
+<p>
+Configure the follwoing using <code>make menuconfig</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">[root@2d1eb21fc48e /]# make menuconfig
+
+64-bit kernel ---&gt; yes
+General setup ---&gt; Initial RAM filesystem and RAM disk (initramfs/initrd) support ---&gt; yes
+General setup ---&gt; Configure standard kernel features ---&gt; Enable support for printk ---&gt; yes
+Executable file formats / Emulations ---&gt; Kernel support for ELF binaries ---&gt; yes
+Executable file formats / Emulations ---&gt; Kernel support for scripts starting with #! ---&gt; yes
+Device Drivers ---&gt; Generic Driver Options ---&gt; Maintain a devtmpfs filesystem to mount at /dev ---&gt; yes
+Device Drivers ---&gt; Generic Driver Options ---&gt; Automount devtmpfs at /dev, after the kernel mounted the rootfs ---&gt; yes
+Device Drivers ---&gt; Character devices ---&gt; Enable TTY ---&gt; yes
+Device Drivers ---&gt; Character devices ---&gt; Serial drivers ---&gt; 8250/16550 and compatible serial support ---&gt; yes
+Device Drivers ---&gt; Character devices ---&gt; Serial drivers ---&gt; Console on 8250/16550 and compatible serial port ---&gt; yes
+File systems ---&gt; Pseudo filesystems ---&gt; /proc file system support ---&gt; yes
+File systems ---&gt; Pseudo filesystems ---&gt; sysfs file system support ---&gt; yes
+</pre>
+</div>
+<p>
+Build the kernel
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">[root@2d1eb21fc48e /]# make -j14
+...
+BUILD   arch/x86/boot/bzImage
+Kernel: arch/x86/boot/bzImage is ready  (#2)
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfc12e93" class="outline-2">
+<h2 id="orgfc12e93"><span class="section-number-2">4.</span> Build busybox core utils</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Use menuconfig to enable static binary (no shared libs) and disable networking,
+network builds currently fail on newer versions of the Linux
+kernel. We want to build busybox as a static binary because then we
+avoid having to install any libraries, we can simply install the
+busybox binary as the root file system.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">[root@2d1eb21fc48e /]# cd ..
+[root@2d1eb21fc48e /]# git clone --depth=1 https://git.busybox.net/busybox 
+[root@2d1eb21fc48e /]# cd busybox
+[root@2d1eb21fc48e busybox]# make defconfig
+[root@2d1eb21fc48e busybox]# make menuconfig
+</pre>
+</div>
+
+<p>
+Build and install busybox
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">make -j14
+make install
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6e18876" class="outline-2">
+<h2 id="org6e18876"><span class="section-number-2">5.</span> Create initial ramdisk root file system</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-nil">[root@fc656f269d02 busybox]# cd ..
+[root@fc656f269d02 /]# mkdir initramfs
+[root@fc656f269d02 /]# cd initramfs/
+[root@fc656f269d02 initramfs]# cp -r ../busybox/_install/* ./
+[root@fc656f269d02 initramfs]# mkdir -p proc sys
+</pre>
+</div>
+
+<p>
+Create init file using vi (paste the following into the file)
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">#!/bin/sh
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+cat &lt;&lt;!
+
+
+Boot took $(cut -d' ' -f1 /proc/uptime) seconds
+
+▓ ▄▄██   ██▓  █▄ ▄        ██▓ ▓▄▄   ▄▄▒
+▓█   ▀  ▓▐█▒  ██ ▀█   █  ▓▐█▒ ▒▒ ▀ ▀ ▒░
+▒█ █    ▒ █▒ ▓██  ▀█ ██▒ ▒ █▒ ░░      ░
+▒▓█  ▄  ░▐ ░ ▓██▒  ▐ ██▒ ░▐ ░  ░ ▄ ▄ ▒
+░▒████▒ ░▐█░ ▒██░   ▓██░ ░▐█░ ▓▀▀▒ ▒▀▀▒
+░░ ▒░ ░ ░▓   ░ ▒░   ▒ ▓  ░▓   ▒▒ ░ ░▓ ░
+ ░ ░  ░  ▒ ░ ░ ░░   ░ ▒░  ▒ ░ ░░   ░▒ ░
+   ░     ▒ ░    ░   ░ ░   ▒ ░  ░    ░
+   ░  ░  ░            ░   ░    ░    ░
+
+
+Welcome to EINIX
+
+
+!
+exec /bin/sh
+
+</pre>
+</div>
+
+<p>
+Make init script executable and create the ram file system
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">[root@2d1eb21fc48e initramfs]# chmod +x init
+[root@2d1eb21fc48e initramfs]# find . -print0 | cpio --null -ov --format=newc   | gzip -9 &gt; initramfs.cpio.gz
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdf7d7d5" class="outline-2">
+<h2 id="orgdf7d7d5"><span class="section-number-2">6.</span> Copy files out of podman and run them in Qemu</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+<pre class="src src-nil">[root@2d1eb21fc48e initramfs]# podman cp 2d1eb21fc48e:/linux/arch/x86/boot/bzImage ./
+[root@2d1eb21fc48e initramfs]# podman cp 2d1eb21fc48e:initramfs.cpio.gz ./  
+
+ejo@fedora ~&gt; qemu-system-x86_64 -kernel bzImage -initrd initramfs.cpio.gz -nographic --append "console=ttyS0"
+  ...
+Freeing initrd memory: 2124K
+Freeing unused kernel image (initmem) memory: 652K
+Write protecting the kernel read-only data: 8192k
+Freeing unused kernel image (text/rodata gap) memory: 1480K
+Freeing unused kernel image (rodata/data gap) memory: 1384K
+Run /init as init process
+
+
+Boot took 0.54 seconds
+
+▓ ▄▄██   ██▓  █▄ ▄        ██▓ ▓▄▄   ▄▄▒
+▓█   ▀  ▓▐█▒  ██ ▀█   █  ▓▐█▒ ▒▒ ▀ ▀ ▒░
+▒█ █    ▒ █▒ ▓██  ▀█ ██▒ ▒ █▒ ░░      ░
+▒▓█  ▄  ░▐ ░ ▓██▒  ▐ ██▒ ░▐ ░  ░ ▄ ▄ ▒
+░▒████▒ ░▐█░ ▒██░   ▓██░ ░▐█░ ▓▀▀▒ ▒▀▀▒
+░░ ▒░ ░ ░▓   ░ ▒░   ▒ ▓  ░▓   ▒▒ ░ ░▓ ░
+ ░ ░  ░  ▒ ░ ░ ░░   ░ ▒░  ▒ ░ ░░   ░▒ ░
+   ░     ▒ ░    ░   ░ ░   ▒ ░  ░    ░
+   ░  ░  ░            ░   ░    ░    ░
+
+
+Welcome to EINIX
+
+
+/bin/sh: can't access tty; job control turned off
+~ #
+~ # clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x30b59aa3db1, max_idle_ns: 440795216505 ns
+clocksource: Switched to clocksource tsc
+
+~ # echo hello!
+hello!
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org648e9e8" class="outline-2">
+<h2 id="org648e9e8"><span class="section-number-2">7.</span> Discussion</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Interestingly the kernel image produced when using `make allnoconfig`
+is 2MB, but building with `make tinyconfig` produces a kernel image of
+only 949kB, but boot takes 90 ms longer:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">ejo@fedora ~&gt; ls -sh bzImage
+2.0M bzImage
+  ...
+Boot took 0.54 seconds
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-nil">ejo@fedora ~&gt; ls -sh bzImage
+952K bzImage
+  ...
+Boot took 0.63 seconds
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0c97e77" class="outline-2">
+<h2 id="org0c97e77"><span class="section-number-2">8.</span> References</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+This whole thing is based on chrisdone's guide
+</p>
+
+<p>
+[0]: <a href="https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e">https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e</a>
+2d1eb21fc48e
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: eino</p>
+<p class="date">Created: 2026-10-09 Fri 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

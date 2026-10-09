@@ -14,7 +14,7 @@ pacesrc = $(filter-out %.md, $(wildcard $(srcdir)/pace/*.*))
 paceobjs = $(patsubst $(srcdir)%,$(builddir)%,$(pacesrc))
 index.html = $(patsubst $(srcdir)%.md,$(builddir)%.html,$(index.md))
 
-all: $(builddirs) $(index.html) $(subdirs) $(html) $(imgobjs) $(tacolatorobjs) pace.js $(builddir)/CNAME
+all: $(builddirs) $(index.html) $(subdirs) $(html) $(imgobjs) $(tacolatorobjs) linux-by-hand pace.js $(builddir)/CNAME
 
 $(index.html): $(index.md) $(top.css)
 	pandoc  -f markdown -t html $< -o $@ --self-contained --css=$(top.css)
@@ -36,6 +36,9 @@ $(tacolatorobjs): $(tacolatorsrc)
 
 $(paceobjs): $(pacesrc)
 	cp $(subst $(builddir),$(srcdir),$@) $@
+
+linux-by-hand: 
+	cp src/linux-by-hand/index.html $(builddir)/linux-by-hand/
 
 pace.js: $(paceobjs)
 	tsc $(builddir)/pace/pace.ts

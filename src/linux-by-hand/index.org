@@ -1,0 +1,200 @@
+* Linux Speedrun
+I was able to build and boot this linux+busybox operating system in
+less than 15 minutes during presentation at work.  The build was done
+in a podman container, and the kernel and rootfile system was booted
+in qemu outside the container.  Based on the guide by chrisdone[0].
+
+* Run Fedora and install dependencies
+We are going to use:
+ - gcc — the compiler
+ - make — the kernel's build system
+ - bc — an arbitrary precision calculator language
+ - flex — lexical analyser generator
+ - bison — a parser generator
+ - cmp —  compare two files byte by byte
+ - ncurses-devel — for menuconfig
+ - cpio — for creating initramfs archive
+ - elfutils-devel — for gelf.h headers
+ - glibc-static — for building static busybox
+ - git — to fetch sources.
+#+begin_src
+  ejo@fedora ~/r/t/einix> podman run -it fedora:latest /bin/bash
+  [root@2d1eb21fc48e linux]# dnf install gcc make flex bison bc cmp ncurses-devel cpio elfutils-devel glibc-static git
+#+end_src
+
+* Download and build the kernel
+Find the latest tag and shallow clone it. At the time of writing the
+latest release tag is v7.2
+
+#+begin_src
+  [root@2d1eb21fc48e /]# git ls-remote --tags https://github.com/torvalds/linux
+  [root@2d1eb21fc48e /]# git clone --branch=v7.2 --depth=1 https://github.com/torvalds/linux
+#+end_src
+
+Now configure the kernel by saying no to everything and build it using
+make, i use -j 14 because I have 14 CPU cores.
+
+#+begin_src
+  [root@2d1eb21fc48e /]# make allnoconfig # This generates the kernel config in the .config file
+  [root@2d1eb21fc48e /]# make -j14
+#+end_src
+Configure the follwoing using ~make menuconfig~
+#+begin_src
+[root@2d1eb21fc48e /]# make menuconfig
+
+64-bit kernel ---> yes
+General setup ---> Initial RAM filesystem and RAM disk (initramfs/initrd) support ---> yes
+General setup ---> Configure standard kernel features ---> Enable support for printk ---> yes
+Executable file formats / Emulations ---> Kernel support for ELF binaries ---> yes
+Executable file formats / Emulations ---> Kernel support for scripts starting with #! ---> yes
+Device Drivers ---> Generic Driver Options ---> Maintain a devtmpfs filesystem to mount at /dev ---> yes
+Device Drivers ---> Generic Driver Options ---> Automount devtmpfs at /dev, after the kernel mounted the rootfs ---> yes
+Device Drivers ---> Character devices ---> Enable TTY ---> yes
+Device Drivers ---> Character devices ---> Serial drivers ---> 8250/16550 and compatible serial support ---> yes
+Device Drivers ---> Character devices ---> Serial drivers ---> Console on 8250/16550 and compatible serial port ---> yes
+File systems ---> Pseudo filesystems ---> /proc file system support ---> yes
+File systems ---> Pseudo filesystems ---> sysfs file system support ---> yes
+#+end_src
+Build the kernel
+#+begin_src
+  [root@2d1eb21fc48e /]# make -j14
+  ...
+  BUILD   arch/x86/boot/bzImage
+  Kernel: arch/x86/boot/bzImage is ready  (#2)
+  
+#+end_src
+
+* Build busybox core utils
+
+Use menuconfig to enable static binary (no shared libs) and disable networking,
+network builds currently fail on newer versions of the Linux
+kernel. We want to build busybox as a static binary because then we
+avoid having to install any libraries, we can simply install the
+busybox binary as the root file system.
+
+#+begin_src
+[root@2d1eb21fc48e /]# cd ..
+[root@2d1eb21fc48e /]# git clone --depth=1 https://git.busybox.net/busybox 
+[root@2d1eb21fc48e /]# cd busybox
+[root@2d1eb21fc48e busybox]# make defconfig
+[root@2d1eb21fc48e busybox]# make menuconfig
+#+end_src
+
+Build and install busybox
+
+#+begin_src
+  make -j14
+  make install
+#+end_src
+
+* Create initial ramdisk root file system
+
+#+begin_src
+[root@fc656f269d02 busybox]# cd ..
+[root@fc656f269d02 /]# mkdir initramfs
+[root@fc656f269d02 /]# cd initramfs/
+[root@fc656f269d02 initramfs]# cp -r ../busybox/_install/* ./
+[root@fc656f269d02 initramfs]# mkdir -p proc sys
+#+end_src
+
+Create init file using vi (paste the following into the file)
+#+begin_src
+#!/bin/sh
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+cat <<!
+
+
+Boot took $(cut -d' ' -f1 /proc/uptime) seconds
+
+▓ ▄▄██   ██▓  █▄ ▄        ██▓ ▓▄▄   ▄▄▒
+▓█   ▀  ▓▐█▒  ██ ▀█   █  ▓▐█▒ ▒▒ ▀ ▀ ▒░
+▒█ █    ▒ █▒ ▓██  ▀█ ██▒ ▒ █▒ ░░      ░
+▒▓█  ▄  ░▐ ░ ▓██▒  ▐ ██▒ ░▐ ░  ░ ▄ ▄ ▒
+░▒████▒ ░▐█░ ▒██░   ▓██░ ░▐█░ ▓▀▀▒ ▒▀▀▒
+░░ ▒░ ░ ░▓   ░ ▒░   ▒ ▓  ░▓   ▒▒ ░ ░▓ ░
+ ░ ░  ░  ▒ ░ ░ ░░   ░ ▒░  ▒ ░ ░░   ░▒ ░
+   ░     ▒ ░    ░   ░ ░   ▒ ░  ░    ░
+   ░  ░  ░            ░   ░    ░    ░
+
+
+Welcome to EINIX
+
+
+!
+exec /bin/sh
+
+#+end_src
+
+Make init script executable and create the ram file system
+#+begin_src
+[root@2d1eb21fc48e initramfs]# chmod +x init
+[root@2d1eb21fc48e initramfs]# find . -print0 | cpio --null -ov --format=newc   | gzip -9 > initramfs.cpio.gz
+#+end_src
+
+* Copy files out of podman and run them in Qemu
+#+begin_src
+[root@2d1eb21fc48e initramfs]# podman cp 2d1eb21fc48e:/linux/arch/x86/boot/bzImage ./
+[root@2d1eb21fc48e initramfs]# podman cp 2d1eb21fc48e:initramfs.cpio.gz ./  
+
+ejo@fedora ~> qemu-system-x86_64 -kernel bzImage -initrd initramfs.cpio.gz -nographic --append "console=ttyS0"
+  ...
+Freeing initrd memory: 2124K
+Freeing unused kernel image (initmem) memory: 652K
+Write protecting the kernel read-only data: 8192k
+Freeing unused kernel image (text/rodata gap) memory: 1480K
+Freeing unused kernel image (rodata/data gap) memory: 1384K
+Run /init as init process
+
+
+Boot took 0.54 seconds
+
+▓ ▄▄██   ██▓  █▄ ▄        ██▓ ▓▄▄   ▄▄▒
+▓█   ▀  ▓▐█▒  ██ ▀█   █  ▓▐█▒ ▒▒ ▀ ▀ ▒░
+▒█ █    ▒ █▒ ▓██  ▀█ ██▒ ▒ █▒ ░░      ░
+▒▓█  ▄  ░▐ ░ ▓██▒  ▐ ██▒ ░▐ ░  ░ ▄ ▄ ▒
+░▒████▒ ░▐█░ ▒██░   ▓██░ ░▐█░ ▓▀▀▒ ▒▀▀▒
+░░ ▒░ ░ ░▓   ░ ▒░   ▒ ▓  ░▓   ▒▒ ░ ░▓ ░
+ ░ ░  ░  ▒ ░ ░ ░░   ░ ▒░  ▒ ░ ░░   ░▒ ░
+   ░     ▒ ░    ░   ░ ░   ▒ ░  ░    ░
+   ░  ░  ░            ░   ░    ░    ░
+
+
+Welcome to EINIX
+
+
+/bin/sh: can't access tty; job control turned off
+~ #
+~ # clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x30b59aa3db1, max_idle_ns: 440795216505 ns
+clocksource: Switched to clocksource tsc
+
+~ # echo hello!
+hello!
+#+end_src
+
+* Discussion
+Interestingly the kernel image produced when using `make allnoconfig`
+is 2MB, but building with `make tinyconfig` produces a kernel image of
+only 949kB, but boot takes 90 ms longer:
+
+#+begin_src
+ejo@fedora ~> ls -sh bzImage
+2.0M bzImage
+  ...
+Boot took 0.54 seconds
+#+end_src
+
+#+begin_src
+ejo@fedora ~> ls -sh bzImage
+952K bzImage
+  ...
+Boot took 0.63 seconds
+#+end_src
+
+* References
+This whole thing is based on chrisdone's guide
+
+[0]: https://gist.github.com/chrisdone/02e165a0004be33734ac2334f215380e
+2d1eb21fc48e
