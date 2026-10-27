@@ -1,4 +1,4 @@
-class Race {
+class Distance {
         name: string;
         length: number; // in meters
 
@@ -8,19 +8,19 @@ class Race {
         }
 }
 
-let race_list = [
-        new Race("200m", 200),
-        new Race("400m", 400),
-        new Race("800m", 800),
-        new Race("1000m", 1000),
-        new Race("1200m", 1200),
-        new Race("1600m", 1600),
-        new Race("Mile", 1609.344),
-        new Race("2km", 2000),
-        new Race("3km", 3000),
-        new Race("5km", 5000),
-        new Race("10km", 10000),
-        new Race("Half-Marathon",	21100)
+let distance_list = [
+        new Distance("200m", 200),
+        new Distance("400m", 400),
+        new Distance("800m", 800),
+        new Distance("1000m", 1000),
+        new Distance("1200m", 1200),
+        new Distance("1600m", 1600),
+        new Distance("Mile", 1609.344),
+        new Distance("2km", 2000),
+        new Distance("3km", 3000),
+        new Distance("5km", 5000),
+        new Distance("10km", 10000),
+        new Distance("Half-Marathon",	21100)
 ];
 
 function calculate_finish_time(minutes: number, seconds: number, len: number) {
@@ -52,8 +52,8 @@ function generate_pace(e: Event) {
     }
     const minutes = Number((<HTMLInputElement>document.getElementById("minutes")).value)
     const seconds = Number((<HTMLInputElement>document.getElementById("seconds")).value)
-    const tableData = race_list.map(race => {
-    let finish_time = calculate_finish_time(minutes, seconds, race.length);
+    const tableData = distance_list.map(distance => {
+    let finish_time = calculate_finish_time(minutes, seconds, distance.length);
     const finish_hours = Math.floor(finish_time/60/60);
     finish_time = finish_time - finish_hours*60*60;
     const finish_minutes = Math.floor(finish_time/60);
@@ -65,14 +65,14 @@ function generate_pace(e: Event) {
     if (finish_hours > 0) {
         return (
         `<tr>
-           <td>${race.name}</td>
+           <td>${distance.name}</td>
            <td><div class="mono">${finish_hours}:${leading_0_min}${finish_minutes}:${leading_0_sec}${finish_seconds}</div></td>
         </tr>`
       );
     } else {
         return (
         `<tr>
-           <td>${race.name}</td>
+           <td>${distance.name}</td>
            <td><div class="mono">${leading_0_min}${finish_minutes}:${leading_0_sec}${finish_seconds}</div></td>
         </tr>`
       );
