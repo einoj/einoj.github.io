@@ -2,13 +2,21 @@
 title: Hello
 ---
 
-I am Eino, welcome to my website
+I am Eino, welcome to my website. The software presented here has been handbuilt, 
+no LLMs are use in the creation of this software.
 
 ___
 
 ## 2026
 
 ---
+
+- **Mon Nov 2**:
+[I added custom distances to the pace calculator](pace/index.html).
+    
+And remove the uncommon distances to make the calculator more compact. If needed the custom distance can
+be used instead, and for calculating race time of less common races like the 8.1k. The slider works for up 
+to 42 km, but you can manually enter larger numbers in the digit box. The unit is meters.
 
 - **Fri Oct 9**:
 [Linux built by hand speedrun](linux-by-hand/index.html).

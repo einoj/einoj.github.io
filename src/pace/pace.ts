@@ -9,18 +9,15 @@ class Distance {
 }
 
 let distance_list = [
-        new Distance("200m", 200),
-        new Distance("400m", 400),
-        new Distance("800m", 800),
-        new Distance("1000m", 1000),
-        new Distance("1200m", 1200),
-        new Distance("1600m", 1600),
+        new Distance("200 m", 200),
+        new Distance("400 m", 400),
+        new Distance("800 m", 800),
+        new Distance("1000 m", 1000),
         new Distance("Mile", 1609.344),
-        new Distance("2km", 2000),
-        new Distance("3km", 3000),
-        new Distance("5km", 5000),
-        new Distance("10km", 10000),
-        new Distance("Half-Marathon",	21100)
+        new Distance("5 km", 5000),
+        new Distance("10 km", 10000),
+        new Distance("Half-Marathon",	21100),
+        new Distance("Custom", 8100)
 ];
 
 function calculate_finish_time(minutes: number, seconds: number, len: number) {
@@ -49,6 +46,16 @@ function generate_pace(e: Event) {
         let seconds = range_val-minutes*60;
         (<HTMLInputElement>document.getElementById("minutes")).value = String(minutes);
         (<HTMLInputElement>document.getElementById("seconds")).value = String(seconds);
+    } else if ((e.target as HTMLElement).id === "meters") {
+        let custom_meters = parseInt((e.target as HTMLInputElement).value);
+        let distance_range = custom_meters;
+        (<HTMLInputElement>document.getElementById("distance_range")).value = String(distance_range);
+        distance_list[distance_list.length-1].length = custom_meters;
+    } else if ((e.target as HTMLElement).id === "distance_range") {
+        let  distance_range= parseInt((e.target as HTMLInputElement).value);
+        let custom_meters = distance_range;
+        (<HTMLInputElement>document.getElementById("meters")).value = String(distance_range);
+        distance_list[distance_list.length-1].length = custom_meters;
     }
     const minutes = Number((<HTMLInputElement>document.getElementById("minutes")).value)
     const seconds = Number((<HTMLInputElement>document.getElementById("seconds")).value)
@@ -61,6 +68,14 @@ function generate_pace(e: Event) {
     const finish_seconds = finish_time.toFixed(2);
     const leading_0_sec = add_leading_zero(Math.round(finish_time));
     const leading_0_min= add_leading_zero(finish_minutes);
+
+    if (distance.name.slice(0,6) === "Custom") {
+        if (distance.length > 1000) {
+            distance.name = "Custom: " + distance.length/1000 + " km";
+        } else {
+            distance.name = "Custom: " + distance.length; + " m"
+        }
+    }
 
     if (finish_hours > 0) {
         return (
@@ -97,3 +112,13 @@ var init_event = new Event("input", {
     bubbles: true,
 });
 numminutes.dispatchEvent(init_event);
+
+
+var custom_meters = document.getElementById("meters");
+custom_meters.addEventListener("input", generate_pace);
+document.getElementById("distance_range").addEventListener("input", generate_pace);
+// create an initial event to populate the table
+var init_event = new Event("input", {
+    bubbles: true,
+});
+custom_meters.dispatchEvent(init_event);
